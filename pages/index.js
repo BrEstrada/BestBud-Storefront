@@ -1,30 +1,31 @@
 import { PageTitle } from './../components/PageTitle';
+import { ProductCard } from './../components/ProductCard';
 
-export default function Home() {
-    // JSON Array of Objects
-    // Array will be our firebase data...
-    // 3 Products and display them.
-    // add stripe
-    // create payment button
-    // api routes, ssr, isr
-    // getStaticPaths, getStaticPages
-    const productData = [1, 2, 3, 4, 5];
-
-    productData.map((item) => console.log(item));
-    // along with a component...
+export default function Home(props) {
+    const products = props.products;
 
     return (
         <>
-            <PageTitle title="Best Bud" tagline="Featured Products" />
-            <ul>
-                {productData.map((product) => (
-                    <ListItem key={product} number={product} />
+            <PageTitle title="Best Bud" tagline="Best Selling Products" />
+            <main>
+                {products.map((product) => (
+                    <ProductCard key={product.uid} product={product} />
                 ))}
-            </ul>
+            </main>
         </>
     );
 }
 
-function ListItem({ number, props }) {
-    return <li>{number}</li>;
+export async function getStaticProps() {
+    const res = await fetch(
+        'https://best-bud-f23ad-default-rtdb.firebaseio.com/products.json'
+    );
+    const productData = await res.json();
+    const products = Object.values(productData);
+
+    return {
+        props: {
+            products,
+        },
+    };
 }
