@@ -20,7 +20,7 @@ function ProductCard({ children, product, ...props }) {
                     width={418}
                     height={240}
                     quality={50}
-                    layout={'intrinsic'}
+                    layout="intrinsic"
                 />
             </header>
             <h2 className={name}>{productName}</h2>
