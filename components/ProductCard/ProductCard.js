@@ -17,8 +17,8 @@ function ProductCard({ children, product, ...props }) {
                     loader={myLoader}
                     src={imageUrl}
                     alt={productName}
-                    width={418}
-                    height={240}
+                    width={500}
+                    height={400}
                     quality={50}
                 />
             </header>
