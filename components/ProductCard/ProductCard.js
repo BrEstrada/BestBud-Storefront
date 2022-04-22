@@ -20,14 +20,13 @@ function ProductCard({ children, product, ...props }) {
                     width={418}
                     height={240}
                     quality={50}
-                    layout="intrinsic"
                 />
             </header>
             <h2 className={name}>{productName}</h2>
             <p className={price}>${productPrice}</p>
             <p className={description}>{productDescription}</p>
             <footer>
-                <form action="#" method="POST">
+                <form action="api/checkout" method="POST">
                     <input type="hidden" name="uid" value={uid} />
                     <button type="submit">Buy Now</button>
                 </form>

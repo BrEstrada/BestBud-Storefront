@@ -1,8 +1,14 @@
+import { loadStripe } from '@stripe/stripe-js';
+
 import { PageTitle } from './../components/PageTitle';
 import { ProductCard } from './../components/ProductCard';
 
 export default function Home(props) {
-    const products = props.products;
+    const products = props.products.slice(5, 8);
+
+    const stripePromise = loadStripe(
+        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    );
 
     return (
         <>
@@ -26,6 +32,7 @@ export async function getStaticProps() {
     return {
         props: {
             products,
+            revalidate: 360,
         },
     };
 }
